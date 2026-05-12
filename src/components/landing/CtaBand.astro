@@ -75,7 +75,7 @@ const { devFrom = 50, devTo = 150 } = Astro.props;
 
   document.getElementById('cta-join')?.addEventListener('click', e => {
     e.preventDefault();
-    document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => (document.getElementById('wl-email') as HTMLInputElement)?.focus(), 750);
+    document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => (document.getElementById('wl-email') as HTMLInputElement)?.focus({ preventScroll: true }), 750);
   });
 </script>
