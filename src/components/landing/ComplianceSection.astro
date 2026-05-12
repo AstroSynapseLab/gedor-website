@@ -1,0 +1,149 @@
+---
+// src/components/landing/ComplianceSection.astro
+import {
+  IconAccessible,
+  IconBrain,
+  IconBuilding,
+  IconCalendarCheck,
+  IconCertificate,
+  IconChartBar,
+  IconClipboardCheck,
+  IconFileDescription,
+  IconLock,
+  IconScale,
+  IconShield,
+  IconShieldCheck,
+} from '@tabler/icons-react';
+
+const certs = [
+  {
+    code: 'ISO/IEC 27001:2022',
+    title: 'Information Security Management',
+    desc: 'The internationally recognised standard for managing information security risks across infrastructure, processes, and people.',
+    chips: [
+      { label: 'Risk Assessment', Icon: IconChartBar },
+      { label: 'Encryption', Icon: IconLock },
+      { label: 'Access Control', Icon: IconShield },
+      { label: 'Incident Response', Icon: IconBuilding },
+      { label: 'Business Continuity', Icon: IconCertificate },
+      { label: 'Annual Audits', Icon: IconCalendarCheck },
+    ],
+  },
+  {
+    code: 'ISO/IEC 42001:2023',
+    title: 'AI Management System',
+    desc: "The world's first international AI management system standard - governing how AI is developed, deployed, and monitored responsibly.",
+    chips: [
+      { label: 'AI Risk Management', Icon: IconBrain },
+      { label: 'Bias Monitoring', Icon: IconScale },
+      { label: 'Transparency Docs', Icon: IconFileDescription },
+      { label: 'Impact Assessments', Icon: IconClipboardCheck },
+      { label: 'EU AI Act Pathway', Icon: IconShieldCheck },
+      { label: 'Model Governance', Icon: IconAccessible },
+    ],
+  },
+] as const;
+---
+
+<section id='compliance' class='relative z-2 my-12 md:mt-36 md:mb-12'>
+  <div class='container max-w-280'>
+    <span
+      class='reveal from-primary via-secondary to-gedor-teal mb-2 block animate-[grad-shift_1.5s_ease-in-out_infinite_alternate] bg-linear-to-br bg-size-[200%] bg-clip-text text-center font-mono text-2xl tracking-wider text-transparent uppercase md:mb-6'
+    >
+      Certifications
+    </span>
+    <h2
+      class='reveal reveal-delay-1 font-display mb-2 text-center text-[30px] leading-8 font-bold md:mb-6 md:text-[46px] md:leading-10'
+    >
+      Compliance that<br />actually means something.
+    </h2>
+    <p class='reveal reveal-delay-2 text-foreground mx-auto mb-10 max-w-130 text-center text-base leading-[1.75]'>
+      Not just checkboxes. Independent audits, documented controls, and certifications your procurement team will
+      recognise.
+    </p>
+
+    <div class='grid grid-cols-1 gap-3 md:grid-cols-2'>
+      {
+        certs.map((c, i) => (
+          <div class:list={['reveal compliance-card', i === 1 && 'reveal-delay-2']}>
+            <div class='card-mouse-glow' />
+            <div class='via-gedor-amber/40 absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent to-transparent' />
+            <div class='pointer-events-none absolute -top-25 -right-25 h-75 w-75 rounded-full bg-[radial-gradient(circle,rgba(251,191,36,0.04),transparent_70%)]' />
+
+            <div class='text-gedor-amber mb-4 font-mono text-sm tracking-[0.15em]'>{c.code}</div>
+            <div
+              class='font-display mb-4 text-xl font-bold tracking-tighter'
+              set:html={c.title.replace(' ', '<br />')}
+            />
+            <p class='text-base leading-[1.75] text-[#b0b0cc]'>{c.desc}</p>
+            <div class='mt-6 flex flex-wrap gap-2'>
+              {c.chips.map(chip => (
+                <span class='text-foreground flex items-center gap-1.5 rounded border border-[#fbbf2433] bg-white/6 px-3 py-1 font-mono text-xs font-medium tracking-wider'>
+                  <chip.Icon size={12} stroke={1} />
+                  {chip.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .compliance-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    transition:
+      transform 0.3s,
+      border-color 0.3s,
+      box-shadow 0.3s;
+  }
+  .compliance-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(251, 191, 36, 0.2);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .card-mouse-glow {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.09) 0%, transparent 70%);
+    transform: translate(calc(var(--mx, -999px) - 190px), calc(var(--my, -999px) - 190px));
+    pointer-events: none;
+    transition: transform 0.04s linear;
+    will-change: transform;
+  }
+
+  @media (max-width: 600px) {
+    .compliance-card {
+      padding: 36px 28px;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.compliance-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', e.clientX - rect.left + 'px');
+      card.style.setProperty('--my', e.clientY - rect.top + 'px');
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--mx', '-999px');
+      card.style.setProperty('--my', '-999px');
+    });
+  });
+</script>

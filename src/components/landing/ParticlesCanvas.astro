@@ -1,0 +1,68 @@
+---
+// src/components/landing/ParticlesCanvas.astro
+---
+
+<canvas id='particles-canvas' class='pointer-events-none fixed inset-0 z-0' aria-hidden='true'></canvas>
+
+<script>
+  const canvas = document.getElementById('particles-canvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d')!;
+  const COLORS = ['#c084fc', '#e879f9', '#a78bfa'];
+  type P = { x: number; y: number; vx: number; vy: number; r: number; alpha: number; color: string };
+  let W = 0,
+    H = 0,
+    particles: P[] = [];
+
+  function makeP(): P {
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.28,
+      vy: (Math.random() - 0.5) * 0.28,
+      r: Math.random() * 1.6 + 1.0,
+      alpha: Math.random() * 0.4 + 0.25,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    };
+  }
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    particles = Array.from({ length: 80 }, makeP);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > W || p.y < 0 || p.y > H) Object.assign(p, makeP());
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x,
+          dy = p.y - q.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = `rgba(192,132,252,${0.18 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  draw();
+</script>

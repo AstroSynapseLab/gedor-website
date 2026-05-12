@@ -1,4 +1,3 @@
-
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 export type HttpStatus = 200 | 201 | 204 | 400 | 401 | 403 | 404 | 500 | 502 | 503;
@@ -16,4 +15,3 @@ export interface ApiError {
   status: HttpStatus;
   details?: Record<string, unknown>;
 }
-

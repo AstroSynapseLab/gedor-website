@@ -1,13 +1,84 @@
 ---
-import { useTranslation } from '@/i18n';
-import Layout from '@/layouts/Layout.astro';
-
-const currentLang = Astro.currentLocale;
-const t = useTranslation(currentLang);
+import { IconArrowUp } from '@tabler/icons-react';
+import CommunitySection from '@/components/landing/CommunitySection.astro';
+import ComplianceSection from '@/components/landing/ComplianceSection.astro';
+import CtaBand from '@/components/landing/CtaBand.astro';
+import FeaturesSection from '@/components/landing/FeaturesSection.astro';
+import Footer from '@/components/landing/Footer.astro';
+import HeroSection from '@/components/landing/HeroSection.astro';
+import ModelsSection from '@/components/landing/ModelsSection.astro';
+import Nav from '@/components/landing/Nav.astro';
+import ParticlesCanvas from '@/components/landing/ParticlesCanvas.astro';
+import LandingLayout from '@/layouts/LandingLayout.astro';
 ---
 
-<Layout>
-  <div>
-    <h1>Hello World</h1>
-  </div>
-</Layout>
+<LandingLayout
+  title='Gedor.ai - EU AI Inference for Developers'
+  description='Enterprise-grade AI inference built in Croatia for European developers. ISO 27001 & ISO 42001 certified. Code models, image recognition, full GDPR compliance.'
+>
+  <div class='landing-bg pointer-events-none fixed inset-0 z-0' aria-hidden='true'></div>
+
+  <div class='landing-grain' aria-hidden='true'></div>
+
+  <ParticlesCanvas />
+
+  <Nav />
+  <main>
+    <HeroSection />
+    <FeaturesSection />
+    <ModelsSection />
+    <ComplianceSection />
+    <CommunitySection />
+    <CtaBand />
+  </main>
+  <Footer />
+
+  <button
+    id='scroll-top'
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    aria-label='Back to top'
+    class='scroll-top-btn'
+  >
+    <IconArrowUp size={16} stroke={1.5} />
+  </button>
+
+  <script>
+    const revealObs = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in-view');
+            revealObs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    const scrollTopBtn = document.getElementById('scroll-top') as HTMLButtonElement | null;
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!scrollTopBtn) return;
+        const visible = window.scrollY > 400;
+        scrollTopBtn.style.opacity = visible ? '1' : '0';
+        scrollTopBtn.style.pointerEvents = visible ? 'auto' : 'none';
+        scrollTopBtn.style.transform = visible ? 'translateY(0)' : 'translateY(8px)';
+      },
+      { passive: true }
+    );
+
+    document.querySelectorAll<HTMLElement>('.feature-card, .compliance-card, .social-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width / 2) / (r.width / 2);
+        const dy = (e.clientY - r.top - r.height / 2) / (r.height / 2);
+        card.style.transform = `perspective(800px) rotateX(${-dy * 4}deg) rotateY(${dx * 4}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  </script>
+</LandingLayout>

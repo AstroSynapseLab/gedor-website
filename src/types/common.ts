@@ -80,4 +80,3 @@ export interface Dimensions {
 }
 
 export type EventHandler<T = globalThis.Event> = (event: T) => void;
-

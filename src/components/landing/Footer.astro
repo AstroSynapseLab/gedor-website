@@ -1,0 +1,122 @@
+---
+// src/components/landing/Footer.astro
+import {
+  IconBrandDiscord,
+  IconBrandReddit,
+  IconBrandX,
+  IconCertificate,
+  IconFlag,
+  IconRobot,
+  IconShieldLock,
+} from '@tabler/icons-react';
+
+const PRODUCT_LINKS = [
+  { label: 'Join Waitlist', href: '#waitlist' },
+  { label: 'Features', href: '#features' },
+  { label: 'Models', href: '#models' },
+  { label: 'Compliance', href: '#compliance' },
+] as const;
+
+const COMMUNITY_LINKS = [
+  { label: 'Discord', href: 'https://discord.gg/gedorai', Icon: IconBrandDiscord, color: '#7289da' },
+  { label: 'Reddit', href: 'https://reddit.com/r/ragstack', Icon: IconBrandReddit, color: '#ff4500' },
+  { label: 'X / Twitter', href: 'https://x.com/gedorai', Icon: IconBrandX, color: '#e7e9ea' },
+] as const;
+
+const LEGAL_LINKS = [
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms of Service', href: '/terms-of-service' },
+  { label: 'GDPR Statement', href: '/gdpr-statement' },
+  { label: 'Cookie Policy', href: '/cookie-policy' },
+] as const;
+
+const BADGES = [
+  { Icon: IconFlag, label: 'Croatia', color: '#f87171' },
+  { Icon: IconShieldLock, label: 'ISO 27001', color: '#a06dd4' },
+  { Icon: IconRobot, label: 'ISO 42001', color: '#2dd4bf' },
+  { Icon: IconCertificate, label: 'EU GDPR', color: '#60a5fa' },
+] as const;
+---
+
+<footer class='relative z-2 my-10 md:mt-36 md:mb-10'>
+  <div class='relative z-2 mx-auto max-w-7xl px-8 text-center md:text-left'>
+    <div class='mb-2 flex flex-wrap items-start justify-center gap-6 md:mb-8 md:justify-between md:gap-9'>
+      <div>
+        <div class='mb-2.5'>
+          <img src='/assets/common/images/icon.png' alt='Gedor.ai' class='mx-auto h-8 w-auto opacity-85 md:mx-0' />
+        </div>
+        <p class='font-mono text-sm leading-6 text-[#7070a0] md:max-w-65'>
+          Private LLM inference on dedicated EU hardware. Built in Croatia, stays in Europe.
+        </p>
+      </div>
+
+      <div class='flex flex-wrap justify-center gap-8 md:justify-start md:gap-16'>
+        <div>
+          <div class='mb-4.5 font-mono text-sm tracking-wider text-[#7070a0] uppercase'>Product</div>
+          {
+            PRODUCT_LINKS.map(({ label, href }) => (
+              <a
+                href={href}
+                class='text-foreground/60 hover:text-foreground mb-2.75 block origin-left text-sm no-underline transition-[color,transform] duration-200 hover:translate-x-0.75'
+              >
+                {label}
+              </a>
+            ))
+          }
+        </div>
+
+        <div>
+          <div class='mb-4.5 font-mono text-sm tracking-wider text-[#7070a0] uppercase'>Community</div>
+          {
+            COMMUNITY_LINKS.map(({ label, href, Icon, color }) => (
+              <a
+                href={href}
+                target='_blank'
+                rel='noopener noreferrer'
+                class='text-foreground/60 hover:text-foreground mb-2.75 flex origin-left items-center justify-center gap-2 text-sm no-underline transition-[color,transform] duration-200 hover:translate-x-0.75 md:justify-start'
+              >
+                <Icon size={14} stroke={1.5} style={{ color }} />
+                {label}
+              </a>
+            ))
+          }
+        </div>
+
+        <div>
+          <div class='mb-4.5 font-mono text-sm tracking-wider text-[#7070a0] uppercase'>Legal</div>
+          {
+            LEGAL_LINKS.map(({ label, href }) => (
+              <a
+                href={href}
+                class='text-foreground/60 hover:text-foreground mb-2.75 block origin-left text-sm no-underline transition-[color,transform] duration-200 hover:translate-x-0.75'
+              >
+                {label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div
+      class='border-border flex flex-wrap items-center justify-center gap-4 border-t pt-4 md:justify-between md:pt-8'
+    >
+      <div class='text-foreground/60 font-mono text-sm'>
+        © {new Date().getFullYear()} Gedor.ai d.o.o. · Zagreb, Croatia
+      </div>
+      <div class='flex flex-wrap items-center justify-center gap-x-3 gap-y-2 md:justify-start'>
+        {
+          BADGES.map(({ Icon, label, color }, i) => (
+            <>
+              {i > 0 && <span class='hidden text-white/10 md:inline'>·</span>}
+              <span class='text-foreground/60 flex items-center gap-1.5 font-mono text-xs'>
+                <Icon size={12} stroke={1.5} style={{ color }} />
+                {label}
+              </span>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</footer>

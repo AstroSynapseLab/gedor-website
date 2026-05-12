@@ -1,3 +1,1 @@
-
-
-export const collections = {  };
+export const collections = {};

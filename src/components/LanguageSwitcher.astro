@@ -8,10 +8,7 @@ const locales = [LanguageEnum.EN, LanguageEnum.HR];
 const current = (Astro.currentLocale as LanguageEnum) ?? LanguageEnum.EN;
 const t = useTranslation(current);
 
-const neutralPath = Astro.url.pathname.replace(
-  new RegExp(`^/(${locales.join('|')})(?=/|$)`),
-  ''
-);
+const neutralPath = Astro.url.pathname.replace(new RegExp(`^/(${locales.join('|')})(?=/|$)`), '');
 ---
 
 <nav class='lang-switcher' aria-label='Language'>

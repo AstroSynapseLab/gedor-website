@@ -124,21 +124,18 @@ npm run dev
 
 ## 🔧 Commands
 
-| Command                 | Description                                      |
-| :---------------------- | :----------------------------------------------- |
-| `npm run dev`           | Start development server (http://localhost:3000) |
-| `npm run build`         | Build for production                             |
-| `npm run stg`           | Build for staging environment                    |
-| `npm run prod`          | Build for production environment                 |
-| `npm run preview`       | Preview build results                            |
-| `npm run lint`          | Run ESLint code quality checks                   |
-| `npm run lint:fix`      | Run ESLint with automatic fixes                  |
-| `npm run format`        | Run Prettier code formatting                     |
-| `npm run format:check`  | Check code formatting                            |
-| `npm run type-check`    | Run TypeScript type checking                     |
-
-
-
+| Command                | Description                                      |
+| :--------------------- | :----------------------------------------------- |
+| `npm run dev`          | Start development server (http://localhost:3000) |
+| `npm run build`        | Build for production                             |
+| `npm run stg`          | Build for staging environment                    |
+| `npm run prod`         | Build for production environment                 |
+| `npm run preview`      | Preview build results                            |
+| `npm run lint`         | Run ESLint code quality checks                   |
+| `npm run lint:fix`     | Run ESLint with automatic fixes                  |
+| `npm run format`       | Run Prettier code formatting                     |
+| `npm run format:check` | Check code formatting                            |
+| `npm run type-check`   | Run TypeScript type checking                     |
 
 ### Environment Switching
 
@@ -235,7 +232,6 @@ import {
 </Dialog>;
 ```
 
-
 ### TailwindCSS Integration
 
 shadcn/ui components use TailwindCSS classes and fully integrate with the
@@ -245,7 +241,6 @@ project's theme:
 // Combining with TailwindCSS utilities
 <Button className='mt-4 w-full'>Full Width Button</Button>
 ```
-
 
 ### Notes
 
@@ -329,7 +324,6 @@ npm run format:check
 # TypeScript type checking
 npm run type-check
 ```
-
 
 ## 📝 Styling
 
@@ -684,5 +678,3 @@ import type { ButtonProps, PageMeta, ApiResponse } from '@/types';
 import type { AsyncState, LoadingState } from '@/types/common';
 import type { HttpMethod, ApiError } from '@/types/api';
 ```
-
-

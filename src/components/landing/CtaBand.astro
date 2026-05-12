@@ -1,0 +1,81 @@
+---
+// src/components/landing/CtaBand.astro
+interface Props {
+  devFrom?: number;
+  devTo?: number;
+}
+const { devFrom = 50, devTo = 150 } = Astro.props;
+---
+
+<section class='relative z-2 py-10 text-center md:py-25'>
+  <div class='mx-auto max-w-280 px-8'>
+    <div
+      id='cta-band-card'
+      class='reveal relative overflow-hidden rounded-3xl border border-white/10 bg-white/3 px-15 py-18 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_40px_120px_rgba(0,0,0,0.5),0_0_120px_rgba(160,109,212,0.05)] backdrop-blur-[48px] max-sm:px-6 max-sm:py-12'
+    >
+      <div class='cta-ambient-glow'></div>
+      <div class='cta-mouse-glow'></div>
+
+      <h2
+        class='font-display relative mb-6 text-center text-[30px] leading-8 font-bold tracking-tighter md:text-[46px] md:leading-12'
+      >
+        Invite - only alpha.<br />{devFrom} - {devTo} developers.
+      </h2>
+      <p class='relative mx-auto mb-10 text-base leading-[1.75] text-[#b0b0cc]'>
+        We're starting small and deliberate. <br />
+        Request access - we'll onboard in waves, starting with the people who shape what we build.
+      </p>
+
+      <div class='relative flex justify-center'>
+        <a
+          href='#waitlist'
+          id='cta-join'
+          class='from-primary to-secondary relative rounded-lg border-0 bg-linear-to-br px-4.5 py-2 font-mono text-sm font-medium text-white no-underline transition-all duration-300'
+        >
+          <span class='pointer-events-none absolute inset-0 bg-linear-to-br from-white/15 to-transparent'></span>
+          JOIN THE WAITLIST
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-ambient-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(160, 109, 212, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-mouse-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(160, 109, 212, 0.1) 0%, transparent 70%);
+    transform: translate(calc(var(--mx, -999px) - 250px), calc(var(--my, -999px) - 250px));
+    pointer-events: none;
+    transition: transform 0.04s linear;
+    will-change: transform;
+  }
+</style>
+
+<script>
+  const card = document.getElementById('cta-band-card') as HTMLElement | null;
+  card?.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mx', e.clientX - rect.left + 'px');
+    card.style.setProperty('--my', e.clientY - rect.top + 'px');
+  });
+  card?.addEventListener('mouseleave', () => {
+    card.style.setProperty('--mx', '-999px');
+    card.style.setProperty('--my', '-999px');
+  });
+
+  document.getElementById('cta-join')?.addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => (document.getElementById('wl-email') as HTMLInputElement)?.focus(), 750);
+  });
+</script>
