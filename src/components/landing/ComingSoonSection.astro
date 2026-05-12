@@ -1,0 +1,51 @@
+---
+// src/components/landing/ComingSoonSection.astro
+
+---
+
+<main class='relative z-2 flex min-h-svh flex-col items-center justify-center px-6 py-32 text-center'>
+
+  <div class='pointer-events-none absolute inset-x-0 top-0 h-96 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(160,109,212,0.10),transparent)]' aria-hidden='true' />
+
+  <div class='mb-10 inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/12 px-7 py-3 font-mono text-base tracking-[0.2em] text-primary backdrop-blur-sm shadow-[0_0_24px_rgba(160,109,212,0.25),inset_0_1px_0_rgba(255,255,255,0.10)] md:text-lg'>
+    <span class='relative flex h-2 w-2'>
+      <span class='absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60'></span>
+      <span class='relative inline-flex h-2 w-2 rounded-full bg-primary'></span>
+    </span>
+    COMING SOON
+  </div>
+
+  <h1 class='font-display mx-auto mb-6 max-w-3xl text-[2.4rem] leading-tight font-bold tracking-tight  md:text-[3rem] md:leading-none'>
+    A single OpenAI-compatible endpoint  <br/>
+    <span class='from-primary via-secondary to-gedor-teal animate-[grad-shift_1.5s_ease-in-out_infinite_alternate] bg-linear-to-br bg-size-[200%] bg-clip-text text-transparent'>
+      for open source models.
+    </span>
+  </h1>
+
+  <p class='mx-auto mb-12 max-w-xl text-base leading-normal text-foreground/60 md:text-lg'>
+    Running on dedicated EU hardware.<br />
+    Your prompts, your data, your models.
+  </p>
+
+  <div class='mb-12 h-px w-full max-w-xl bg-linear-to-r from-transparent via-white/10 to-transparent'></div>
+
+  <!-- Why block -->
+  <div class='mx-auto mb-12 w-full max-w-7xl'>
+    <span class='mb-6 block font-mono text-xl tracking-[0.2em] uppercase from-primary via-secondary to-gedor-teal animate-[grad-shift_1.5s_ease-in-out_infinite_alternate] bg-linear-to-br bg-size-[200%] bg-clip-text text-transparent md:text-[2.2rem]'>
+      Why Gedor.ai
+    </span>
+    <h2 class='font-display mb-10 font-bold tracking-tighter leading-none text-[1.6rem] sm:text-[2.4rem] md:text-[3rem] lg:text-[4rem] xl:text-[4rem]'>
+      No hyperscaler.<br />No US jurisdiction.<br />No compromises.
+    </h2>
+    <p class='mx-auto max-w-xl text-base leading-normal text-foreground/50 md:text-lg'>
+      Every token is processed on dedicated hardware in Croatia.
+      Not resold cloud, not shared infrastructure —
+      <span class='text-foreground font-medium'>owned metal, full control.</span>
+    </p>
+  </div>
+
+
+  <!-- Bottom glow -->
+  <div class='pointer-events-none absolute bottom-0 inset-x-0 h-96 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(160,109,212,0.22),transparent_70%)]' aria-hidden='true' />
+
+</main>
