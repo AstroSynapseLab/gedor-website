@@ -1,0 +1,13 @@
+---
+import { useTranslation } from '@/i18n';
+import Layout from '@/layouts/Layout.astro';
+
+const currentLang = Astro.currentLocale;
+const t = useTranslation(currentLang);
+---
+
+<Layout>
+  <div>
+    <h1>Pozdrav svijete</h1>
+  </div>
+</Layout>

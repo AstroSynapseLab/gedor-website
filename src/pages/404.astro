@@ -1,0 +1,43 @@
+---
+
+import ButtonLink from '@/components/ButtonLink.astro';
+import { useTranslation } from '@/i18n';
+import Layout from '@/layouts/Layout.astro';
+import type { LanguageEnum } from '@/types';
+
+const currentLang = Astro.currentLocale as LanguageEnum;
+const t = useTranslation(currentLang);
+---
+
+<Layout hideHeader={true} hideFooter={true}>
+  <section class='flex h-screen w-full items-center justify-center overflow-hidden py-12 max-lg:relative md:px-6'>
+    <div class='container'>
+      <div class='z-10 mx-auto flex w-full flex-col items-center justify-center text-center lg:max-w-325'>
+        <span class='text-primary mb-2 text-sm font-medium tracking-wider uppercase lg:text-base'>
+          404 - {t('global.notFound') ?? 'Page not found'}
+        </span>
+
+        <h1 class='mb-6 text-[48px] leading-12 font-bold lg:mb-10 lg:text-[104px] lg:leading-28'>
+          Oops<span class='text-secondary'>.</span>
+        </h1>
+
+        <p class='text-primary mb-10 max-w-xl text-base leading-7 opacity-80 lg:text-xl lg:leading-8'>
+          {t('global.notFoundDescription') ?? 'The page you are looking for does not exist or has been moved.'}
+        </p>
+
+        <div class='flex flex-col gap-4 sm:flex-row'>
+          <ButtonLink
+            href={currentLang === 'en' ? '/' : '/hr/'}
+            variant='default'
+            class='font-inter flex h-15 items-center gap-2.5 rounded-[40px] border-2 px-12! text-xl leading-7 font-medium lg:h-20 lg:text-2xl lg:leading-8'
+          >
+            {t('global.goHome')}
+          </ButtonLink>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  </section>
+</Layout>

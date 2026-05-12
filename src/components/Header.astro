@@ -1,0 +1,28 @@
+---
+import LanguageSwitcher from '@/components/LanguageSwitcher.astro';
+import { LanguageEnum } from '@/types';
+
+const currentLang = (Astro.currentLocale as LanguageEnum) ?? LanguageEnum.EN;
+const homeHref = currentLang === LanguageEnum.EN ? '/' : `/${currentLang}/`;
+---
+
+<header class='site-header'>
+  <a href={homeHref} class='site-brand'>Astrosynapsis</a>
+  <LanguageSwitcher />
+</header>
+
+<style lang='scss'>
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .site-brand {
+    font-weight: 700;
+    text-decoration: none;
+    color: inherit;
+  }
+</style>

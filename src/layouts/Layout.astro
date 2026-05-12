@@ -1,0 +1,28 @@
+---
+// src/layouts/Layout.astro
+import Head from '@/components/Head.astro';
+import Header from '@/components/Header.astro';
+import type { PageMeta } from '@/lib/constants';
+import '@/styles/global.css';
+
+const props = Astro.props as PageMeta;
+const currentLang = Astro.currentLocale;
+---
+
+<!doctype html>
+<html lang={currentLang}>
+  <Head {...props} />
+  <body>
+    <Header />
+    <slot />
+  </body>
+</html>
+
+<style lang='scss'>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
