@@ -496,7 +496,26 @@
 
     @media (max-width: 640px) {
       .footer { flex-direction: column; text-align: center; }
-      .footer-links { justify-content: center; flex-wrap: wrap; gap: 16px; }
+      .footer-links { justify-content: center; flex-wrap: wrap; gap: 12px; }
+    }
+
+    /* ── mobile ── */
+    @media (max-width: 430px) {
+      .nav { margin-bottom: 40px; }
+      .hero { padding: 20px 0 40px; }
+      .waitlist-form { max-width: 100%; flex-direction: column; border-radius: 12px; }
+      .waitlist-btn { width: 100%; border-radius: 8px; white-space: normal; font-size: 13px; }
+      .waitlist-input { padding: 10px 12px; }
+      .section { padding: 40px 0; }
+      .section-label { gap: 6px; }
+      .section-label::before { width: 12px; }
+      .tab { font-size: 11px; padding: 12px 8px; gap: 6px; }
+      .tab-count { font-size: 9px; padding: 2px 5px; }
+      .tabpanels { padding: 16px 12px; }
+      .model-list { gap: 4px 12px; }
+      .final-cta { padding: 48px 0; }
+      .trust-item { padding: 8px 16px; }
+      .footer-links { gap: 8px; }
     }
 
     /* ── reveal on load ── */
@@ -557,7 +576,7 @@
       />
       <button type="submit" class="waitlist-btn">Join the waitlist</button>
     </form>
-    <p class="form-consent fade-in delay-4">By clicking Join the waitlist, you agree to our <a href="#">Terms of Service</a>. I agree to gedor.ai storing and processing my information to manage my waitlist request. I can withdraw consent at any time by emailing <a href="mailto:privacy@gedor.ai">privacy@gedor.ai</a>. See our <a href="#">Privacy Policy</a>.</p>
+    <p class="form-consent fade-in delay-4">By clicking Join the waitlist, you agree to our <a href="#">Terms of Service</a> and to gedor.ai storing and processing your information to manage your waitlist request. You can withdraw consent at any time by emailing <a href="mailto:privacy@gedor.ai">privacy@gedor.ai</a>. See our <a href="#">Privacy Policy</a>.</p>
 
   </section>
 
@@ -680,7 +699,7 @@
       />
       <button type="submit" class="waitlist-btn">Join the waitlist</button>
     </form>
-    <p class="form-consent">By clicking Join the waitlist, you agree to our <a href="#">Terms of Service</a>. I agree to gedor.ai storing and processing my information to manage my waitlist request. I can withdraw consent at any time by emailing <a href="mailto:privacy@gedor.ai">privacy@gedor.ai</a>. See our <a href="#">Privacy Policy</a>.</p>
+    <p class="form-consent">By clicking Join the waitlist, you agree to our <a href="#">Terms of Service</a> and to gedor.ai storing and processing your information to manage your waitlist request. You can withdraw consent at any time by emailing <a href="mailto:privacy@gedor.ai">privacy@gedor.ai</a>. See our <a href="#">Privacy Policy</a>.</p>
   </section>
 
   <!-- Trust strip -->

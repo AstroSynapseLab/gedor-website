@@ -26,3 +26,8 @@
 - Devstral moved to position 01 in the Coding models tab, renamed to "Devstral 22B". Remaining models renumbered accordingly.
 - Roadmap **Now** box shortened for visual balance with the **Next** box.
 - Roadmap **Next** box lightly reworded for parity in length.
+- Consent text rewritten from first person to second person ("I agree" → "you agree", "my information" → "your information").
+- Consent text consolidated into a single sentence for clarity.
+
+### Fixed
+- Mobile responsiveness: added `@media (max-width: 430px)` overrides for nav margin, hero padding, waitlist form (vertical stack, full-width button), section padding, tabs, model list gap, final CTA padding, and footer link spacing.
