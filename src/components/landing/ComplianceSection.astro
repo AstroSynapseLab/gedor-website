@@ -75,10 +75,10 @@ const certs = [
               class='font-display mb-4 text-xl font-bold tracking-tighter'
               set:html={c.title.replace(' ', '<br />')}
             />
-            <p class='text-base leading-[1.75] text-[#b0b0cc]'>{c.desc}</p>
+            <p class='text-base leading-[1.75] text-[#4b6580]'>{c.desc}</p>
             <div class='mt-6 flex flex-wrap gap-2'>
               {c.chips.map(chip => (
-                <span class='text-foreground flex items-center gap-1.5 rounded border border-[#fbbf2433] bg-white/6 px-3 py-1 font-mono text-xs font-medium tracking-wider'>
+                <span class='text-foreground flex items-center gap-1.5 rounded border border-[rgba(245,158,11,0.3)] bg-[rgba(245,158,11,0.08)] px-3 py-1 font-mono text-xs font-medium tracking-wider'>
                   <chip.Icon size={12} stroke={1} />
                   {chip.label}
                 </span>
@@ -93,15 +93,15 @@ const certs = [
 
 <style>
   .compliance-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.72);
     backdrop-filter: blur(32px);
     -webkit-backdrop-filter: blur(32px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(14, 30, 60, 0.1);
     border-radius: 16px;
     padding: 48px 40px;
     position: relative;
     overflow: hidden;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
     transition:
       transform 0.3s,
       border-color 0.3s,
@@ -109,10 +109,10 @@ const certs = [
   }
   .compliance-card:hover {
     transform: translateY(-3px);
-    border-color: rgba(251, 191, 36, 0.2);
+    border-color: rgba(245, 158, 11, 0.35);
     box-shadow:
-      0 20px 60px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      0 16px 40px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
   }
 
   .card-mouse-glow {
@@ -120,7 +120,7 @@ const certs = [
     width: 380px;
     height: 380px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(251, 191, 36, 0.09) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.06) 0%, transparent 70%);
     transform: translate(calc(var(--mx, -999px) - 190px), calc(var(--my, -999px) - 190px));
     pointer-events: none;
     transition: transform 0.04s linear;

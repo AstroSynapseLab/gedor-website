@@ -218,7 +218,7 @@ const WaitlistForm = () => {
         id='waitlist-form'
         onSubmit={handleSubmit(onSubmit)}
         noValidate
-        className='relative flex flex-col gap-4 rounded-xl border border-white/10 bg-white/4 px-7 pt-7 pb-6 shadow-[0_0_0_1px_rgba(255,255,255,0.04)_inset,0_12px_48px_rgba(0,0,0,0.5),0_0_80px_rgba(160,109,212,0.06)] backdrop-blur-2xl'
+        className='relative flex flex-col gap-4 rounded-xl border border-[rgba(14,30,60,0.1)] bg-white/80 px-7 pt-7 pb-6 shadow-[0_4px_24px_rgba(0,0,0,0.07),inset_0_1px_0_rgba(255,255,255,0.95)] backdrop-blur-2xl'
       >
         <div className='mb-4'>
           <ToggleGroup
@@ -344,7 +344,7 @@ const WaitlistForm = () => {
                   checked={field.value}
                   onCheckedChange={field.onChange}
                   aria-invalid={!!errors.gdpr}
-                  className='data-[state=checked]:bg-primary/15 data-[state=checked]:border-primary/50 group-hover:border-primary/35 mt-0.5 size-5 shrink-0 rounded border-white/10'
+                  className='data-[state=checked]:bg-primary/15 data-[state=checked]:border-primary/50 group-hover:border-primary/35 mt-0.5 size-5 shrink-0 rounded border-[rgba(14,30,60,0.2)]'
                 />
               )}
             />
@@ -373,7 +373,7 @@ const WaitlistForm = () => {
         <Button
           type='submit'
           disabled={isSubmitting}
-          className='from-primary to-secondary relative mt-4 h-auto w-full cursor-pointer overflow-hidden rounded-[11px] border-0 bg-linear-to-br py-4 font-mono text-sm font-medium text-white shadow-[0_2px_20px_rgba(160,109,212,0.35)] transition-[transform,box-shadow,opacity] duration-150 hover:-translate-y-px hover:shadow-[0_4px_28px_rgba(160,109,212,0.55)] active:translate-y-0 disabled:cursor-default disabled:opacity-50'
+          className='mt-4 h-auto w-full cursor-pointer rounded-[11px] border-0 bg-gedor-amber py-4 font-mono text-sm font-medium text-[#0d1b2a] transition-[transform,box-shadow,opacity] duration-150 hover:-translate-y-px hover:shadow-[0_4px_20px_rgba(37,99,235,0.15)] active:translate-y-0 disabled:cursor-default disabled:opacity-50'
         >
           <span className='pointer-events-none absolute inset-0 bg-linear-to-b from-white/18 to-transparent' />
           {isSubmitting ? 'SUBMITTING…' : 'REQUEST EARLY ACCESS'}

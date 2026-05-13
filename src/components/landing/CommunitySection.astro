@@ -12,7 +12,7 @@ const socials = [
     iconColor: '#5865f2',
     glowBg: 'radial-gradient(ellipse at 50% 100%, rgba(88,101,242,0.12), transparent 60%)',
     hoverClasses:
-      'hover:border-[rgba(88,101,242,0.3)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.4),_0_0_60px_rgba(88,101,242,0.08)]',
+      'hover:border-[rgba(88,101,242,0.3)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08),_0_0_40px_rgba(88,101,242,0.06)]',
   },
   {
     href: 'https://reddit.com/r/ragstack',
@@ -22,7 +22,7 @@ const socials = [
     action: 'Visit subreddit',
     iconColor: '#ff4500',
     glowBg: 'radial-gradient(ellipse at 50% 100%, rgba(255,69,0,0.10), transparent 60%)',
-    hoverClasses: 'hover:border-[rgba(255,69,0,0.25)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]',
+    hoverClasses: 'hover:border-[rgba(255,69,0,0.25)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]',
   },
   {
     href: 'https://x.com/gedorai',
@@ -30,9 +30,9 @@ const socials = [
     name: 'X / Twitter',
     desc: 'Updates, launch news, and behind-the-scenes from our team in Zagreb.',
     action: 'Follow us',
-    iconColor: '#e7e9ea',
-    glowBg: 'radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.05), transparent 60%)',
-    hoverClasses: 'hover:border-[rgba(255,255,255,0.15)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)]',
+    iconColor: '#374151',
+    glowBg: 'radial-gradient(ellipse at 50% 100%, rgba(55,65,81,0.06), transparent 60%)',
+    hoverClasses: 'hover:border-[rgba(55,65,81,0.25)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]',
   },
 ] as const;
 ---
@@ -64,8 +64,8 @@ const socials = [
             class:list={[
               'shimmer reveal group flex flex-col justify-between',
               'relative min-h-45 overflow-hidden rounded-2xl px-7 py-8 no-underline',
-              'bg-white/3 backdrop-blur-[28px]',
-              'border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]',
+              'bg-white/72 backdrop-blur-[28px]',
+              'border border-[rgba(14,30,60,0.1)] shadow-[0_2px_12px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)]',
               '[transition:transform_0.35s_cubic-bezier(.25,.46,.45,.94),border-color_0.3s,box-shadow_0.3s]',
               'hover:-translate-y-1.25',
               s.hoverClasses,
@@ -73,7 +73,7 @@ const socials = [
               i === 2 && 'reveal-delay-2',
             ]}
           >
-            <div class='absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/[0.07] to-transparent' />
+            <div class='absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[rgba(14,30,60,0.1)] to-transparent' />
             <div
               class='pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-350 group-hover:opacity-100'
               style={{ background: s.glowBg }}

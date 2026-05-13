@@ -5,7 +5,7 @@ import { IconBolt, IconCode, IconCurrencyEuro, IconEye, IconPlugConnected, IconS
 const features = [
   {
     Icon: IconShieldLock,
-    iconColor: '#a06dd4',
+    iconColor: '#3b82f6',
     title: 'EU Data Sovereignty',
     desc: 'All infrastructure is owned and operated in Croatia. No CLOUD Act exposure, no third-country data transfers, no US hyperscaler in the chain.',
   },
@@ -66,10 +66,10 @@ const features = [
           const delayClass = i % 3 === 1 ? 'reveal-delay-1' : i % 3 === 2 ? 'reveal-delay-2' : '';
           return (
             <div class:list={['shimmer reveal feature-card', delayClass]}>
-              <div class='absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/15 to-transparent' />
-              <div class='feature-glow pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(160,109,212,0.07),transparent_60%)] opacity-0 transition-opacity duration-400' />
+              <div class='absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[rgba(14,30,60,0.08)] to-transparent' />
+              <div class='feature-glow pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(37,99,235,0.06),transparent_60%)] opacity-0 transition-opacity duration-400' />
 
-              <div class='feature-icon mb-4.5 flex h-11 w-11 items-center justify-center rounded-[10px] border border-white/8 bg-white/6 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-sm transition-transform duration-300'>
+              <div class='feature-icon mb-4.5 flex h-11 w-11 items-center justify-center rounded-[10px] border border-[rgba(14,30,60,0.1)] bg-white/80 shadow-[0_1px_4px_rgba(0,0,0,0.06)] backdrop-blur-sm transition-transform duration-300'>
                 <f.Icon size={22} stroke={1.5} style={{ color: f.iconColor }} />
               </div>
               <div class='font-display mb-2.5 text-base font-bold tracking-[-0.3px]'>{f.title}</div>
@@ -88,16 +88,16 @@ const features = [
 
 <style>
   .feature-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.72);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(14, 30, 60, 0.1);
     border-radius: 16px;
     padding: 32px 28px;
     position: relative;
     overflow: hidden;
     cursor: default;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
     transition:
       transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
       border-color 0.3s,
@@ -105,10 +105,10 @@ const features = [
   }
   .feature-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(160, 109, 212, 0.25);
+    border-color: rgba(37, 99, 235, 0.3);
     box-shadow:
-      0 16px 48px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      0 16px 40px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
   }
   .feature-card:hover .feature-glow {
     opacity: 1;

@@ -20,7 +20,7 @@ const PRODUCT_LINKS = [
 const COMMUNITY_LINKS = [
   { label: 'Discord', href: 'https://discord.gg/gedorai', Icon: IconBrandDiscord, color: '#7289da' },
   { label: 'Reddit', href: 'https://reddit.com/r/ragstack', Icon: IconBrandReddit, color: '#ff4500' },
-  { label: 'X / Twitter', href: 'https://x.com/gedorai', Icon: IconBrandX, color: '#e7e9ea' },
+  { label: 'X / Twitter', href: 'https://x.com/gedorai', Icon: IconBrandX, color: '#374151' },
 ] as const;
 
 const LEGAL_LINKS = [
@@ -32,7 +32,7 @@ const LEGAL_LINKS = [
 
 const BADGES = [
   { Icon: IconFlag, label: 'Croatia', color: '#f87171' },
-  { Icon: IconShieldLock, label: 'ISO 27001', color: '#a06dd4' },
+  { Icon: IconShieldLock, label: 'ISO 27001', color: '#3b82f6' },
   { Icon: IconRobot, label: 'ISO 42001', color: '#2dd4bf' },
   { Icon: IconCertificate, label: 'EU GDPR', color: '#60a5fa' },
 ] as const;
@@ -45,14 +45,14 @@ const BADGES = [
         <div class='mb-2.5'>
           <img src='/assets/common/images/icon.png' alt='Gedor.ai' class='mx-auto h-8 w-auto opacity-85 md:mx-0' />
         </div>
-        <p class='font-mono text-sm leading-6 text-[#7070a0] md:max-w-65'>
+        <p class='font-mono text-sm leading-6 text-[#5a7090] md:max-w-65'>
           Private LLM inference on dedicated EU hardware. Built in Croatia, stays in Europe.
         </p>
       </div>
 
       <div class='flex flex-wrap justify-center gap-8 md:justify-start md:gap-16'>
         <div>
-          <div class='mb-4.5 font-mono text-sm tracking-wider text-[#7070a0] uppercase'>Product</div>
+          <div class='mb-4.5 font-mono text-sm tracking-wider text-[#5a7090] uppercase'>Product</div>
           {
             PRODUCT_LINKS.map(({ label, href }) => (
               <a
@@ -66,7 +66,7 @@ const BADGES = [
         </div>
 
         <div>
-          <div class='mb-4.5 font-mono text-sm tracking-wider text-[#7070a0] uppercase'>Community</div>
+          <div class='mb-4.5 font-mono text-sm tracking-wider text-[#5a7090] uppercase'>Community</div>
           {
             COMMUNITY_LINKS.map(({ label, href, Icon, color }) => (
               <a
@@ -83,7 +83,7 @@ const BADGES = [
         </div>
 
         <div>
-          <div class='mb-4.5 font-mono text-sm tracking-wider text-[#7070a0] uppercase'>Legal</div>
+          <div class='mb-4.5 font-mono text-sm tracking-wider text-[#5a7090] uppercase'>Legal</div>
           {
             LEGAL_LINKS.map(({ label, href }) => (
               <a

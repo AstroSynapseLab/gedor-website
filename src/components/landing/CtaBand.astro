@@ -11,7 +11,7 @@ const { devFrom = 50, devTo = 150 } = Astro.props;
   <div class='mx-auto max-w-280 px-8'>
     <div
       id='cta-band-card'
-      class='reveal relative overflow-hidden rounded-3xl border border-white/10 bg-white/3 px-15 py-18 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_40px_120px_rgba(0,0,0,0.5),0_0_120px_rgba(160,109,212,0.05)] backdrop-blur-[48px] max-sm:px-6 max-sm:py-12'
+      class='reveal relative overflow-hidden rounded-3xl border border-[rgba(14,30,60,0.1)] bg-white/72 px-15 py-18 shadow-[0_8px_40px_rgba(0,0,0,0.07),inset_0_1px_0_rgba(255,255,255,0.95)] backdrop-blur-[48px] max-sm:px-6 max-sm:py-12'
     >
       <div class='cta-ambient-glow'></div>
       <div class='cta-mouse-glow'></div>
@@ -21,7 +21,7 @@ const { devFrom = 50, devTo = 150 } = Astro.props;
       >
         Invite - only alpha.<br />{devFrom} - {devTo} developers.
       </h2>
-      <p class='relative mx-auto mb-10 text-base leading-[1.75] text-[#b0b0cc]'>
+      <p class='relative mx-auto mb-10 text-base leading-[1.75] text-[#4b6580]'>
         We're starting small and deliberate. <br />
         Request access - we'll onboard in waves, starting with the people who shape what we build.
       </p>
@@ -30,9 +30,9 @@ const { devFrom = 50, devTo = 150 } = Astro.props;
         <a
           href='#waitlist'
           id='cta-join'
-          class='from-primary to-secondary relative rounded-lg border-0 bg-linear-to-br px-4.5 py-2 font-mono text-sm font-medium text-white no-underline transition-all duration-300'
+          class='rounded-lg border-0 bg-gedor-amber px-4.5 py-2 font-mono text-sm font-medium text-[#0d1b2a] no-underline transition-shadow duration-300 hover:shadow-[0_0_18px_rgba(37,99,235,0.18)]'
         >
-          <span class='pointer-events-none absolute inset-0 bg-linear-to-br from-white/15 to-transparent'></span>
+          <span class='pointer-events-none absolute inset-0 rounded-lg bg-linear-to-b from-white/20 to-transparent'></span>
           JOIN THE WAITLIST
         </a>
       </div>
@@ -44,7 +44,7 @@ const { devFrom = 50, devTo = 150 } = Astro.props;
   .cta-ambient-glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(160, 109, 212, 0.18) 0%, transparent 70%);
+    background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -53,7 +53,7 @@ const { devFrom = 50, devTo = 150 } = Astro.props;
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(160, 109, 212, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
     transform: translate(calc(var(--mx, -999px) - 250px), calc(var(--my, -999px) - 250px));
     pointer-events: none;
     transition: transform 0.04s linear;

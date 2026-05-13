@@ -7,7 +7,7 @@
 <script>
   const canvas = document.getElementById('particles-canvas') as HTMLCanvasElement;
   const ctx = canvas.getContext('2d')!;
-  const COLORS = ['#c084fc', '#e879f9', '#a78bfa'];
+  const COLORS = ['#2563eb', '#1d4ed8', '#f59e0b'];
   type P = { x: number; y: number; vx: number; vy: number; r: number; alpha: number; color: string };
   let W = 0,
     H = 0,
@@ -53,7 +53,7 @@
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = `rgba(192,132,252,${0.18 * (1 - dist / 120)})`;
+          ctx.strokeStyle = `rgba(37,99,235,${0.15 * (1 - dist / 120)})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
         }
