@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gedor.ai — LLMs as a Service. Hosted in the EU.</title>
-  <meta name="description" content="LLMs as a Service, hosted in the EU. On-demand or private provisioning, curated open-weight catalog, OpenAI-compatible API." />
+  <title>Gedor.ai — LLM as a Service. Hosted in the EU.</title>
+  <meta name="description" content="LLM as a Service, hosted in the EU. On-demand or private provisioning, curated open-weight catalog, OpenAI-compatible API." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -197,6 +197,22 @@
       color: var(--text-tertiary);
       text-align: center;
     }
+
+    .form-consent {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      text-align: center;
+      max-width: 420px;
+      margin: 8px auto 0;
+      line-height: 1.6;
+    }
+    .form-consent a {
+      color: var(--text-tertiary);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 150ms ease;
+    }
+    .form-consent a:hover { color: var(--text-secondary); }
 
     /* ── section header ── */
     .section {
@@ -519,7 +535,7 @@
     </div>
 
     <h1 class="headline fade-in delay-2">
-      LLMs as a Service.<br/>
+      LLM as a Service.<br/>
       Hosted in the <em>EU.</em>
     </h1>
 
@@ -541,7 +557,8 @@
       />
       <button type="submit" class="waitlist-btn">Join the waitlist</button>
     </form>
-    <p class="form-note fade-in delay-4">Early access opens summer 2026.</p>
+    <p class="form-consent fade-in delay-4">By clicking Join the waitlist, you agree to our <a href="#">Terms of Service</a>. I agree to gedor.ai storing and processing my information to manage my waitlist request. I can withdraw consent at any time by emailing <a href="mailto:privacy@gedor.ai">privacy@gedor.ai</a>. See our <a href="#">Privacy Policy</a>.</p>
+
   </section>
 
   <!-- Models -->
@@ -582,13 +599,13 @@
 
         <div class="tabpanel" role="tabpanel" id="panel-coding" aria-labelledby="tab-coding" aria-hidden="true">
           <ul class="model-list">
-            <li><span class="idx">01</span><span class="dot"></span><span class="name">GLM 5.1 Coder</span><span class="tag">MIT</span></li>
-            <li><span class="idx">02</span><span class="dot"></span><span class="name">Kimi K2.6 Thinking</span><span class="tag">MIT-mod</span></li>
-            <li><span class="idx">03</span><span class="dot"></span><span class="name">Qwen 3 Coder</span><span class="tag">Apache 2.0</span></li>
-            <li><span class="idx">04</span><span class="dot"></span><span class="name">Qwen 3.6 Coder 27B</span><span class="tag">Apache 2.0</span></li>
-            <li><span class="idx">05</span><span class="dot"></span><span class="name">DeepSeek Coder V2</span><span class="tag">MIT</span></li>
-            <li><span class="idx">06</span><span class="dot"></span><span class="name">DeepSeek V4 Pro</span><span class="tag">MIT</span></li>
-            <li><span class="idx">07</span><span class="dot"></span><span class="name">Devstral Small 2</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">01</span><span class="dot"></span><span class="name">Devstral 22B</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">02</span><span class="dot"></span><span class="name">GLM 5.1 Coder</span><span class="tag">MIT</span></li>
+            <li><span class="idx">03</span><span class="dot"></span><span class="name">Kimi K2.6 Thinking</span><span class="tag">MIT-mod</span></li>
+            <li><span class="idx">04</span><span class="dot"></span><span class="name">Qwen 3 Coder</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">05</span><span class="dot"></span><span class="name">Qwen 3.6 Coder 27B</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">06</span><span class="dot"></span><span class="name">DeepSeek Coder V2</span><span class="tag">MIT</span></li>
+            <li><span class="idx">07</span><span class="dot"></span><span class="name">DeepSeek V4 Pro</span><span class="tag">MIT</span></li>
             <li><span class="idx">08</span><span class="dot"></span><span class="name">Codestral 25.05</span><span class="tag">MNPL</span></li>
             <li><span class="idx">09</span><span class="dot"></span><span class="name">StarCoder 2 15B</span><span class="tag">BigCode</span></li>
             <li><span class="idx">10</span><span class="dot"></span><span class="name">MiniMax M2.7</span><span class="tag">MIT</span></li>
@@ -614,42 +631,38 @@
     </div>
   </section>
 
-  <!-- Infrastructure + What's next -->
+  <!-- Roadmap -->
   <section class="container section">
-    <div class="section-label">Under the hood</div>
-    <h2 class="section-title">Owned compute. Open roadmap.</h2>
-    <p class="section-subtitle">Dedicated infrastructure today. Self-provisioned endpoints and agents next.</p>
+    <div class="section-label">Roadmap</div>
+    <h2 class="section-title">Where we're headed.</h2>
+    <p class="section-subtitle">Built for European companies that take data sovereignty seriously.</p>
 
     <div class="infra-block">
       <div class="infra-pane">
         <span class="infra-tag">Now</span>
         <p class="infra-body">
-          We're building on dedicated GPUs in an EU data center, with a <strong>Bifrost</strong> gateway, <strong>vLLM</strong> inference, and <strong>scale-to-zero</strong> orchestration. Direct compute access, no reseller stack.
+          Microsoft, Amazon, Google and others operate under US law and are legally obligated to share data with US authorities on request. <strong>Gedor runs entirely within the EU</strong>, subject only to EU legislation — GDPR, EU AI Act, no foreign surveillance frameworks.
         </p>
         <div class="infra-chips">
-          <span class="chip">Bifrost</span>
-          <span class="chip">vLLM</span>
-          <span class="chip">Kubernetes</span>
-          <span class="chip">KServe</span>
-          <span class="chip">EU-resident</span>
+          <span class="chip">EU-resident compute</span>
+          <span class="chip">GDPR</span>
+          <span class="chip">EU AI Act</span>
+          <span class="chip">No US data exposure</span>
         </div>
       </div>
 
       <div class="infra-pane">
         <span class="infra-tag">Next</span>
         <p class="infra-body">
-          Dedicated GPU endpoints you provision yourself, and a marketplace of ready-to-deploy agents.
+          Beyond models, we're building <strong>AI Agents as a Service</strong> — ready-to-deploy agents for common workflows. Already have your own agent? <strong>Bring Your Own Agent</strong> and run it on EU infrastructure, fully compliant.
         </p>
         <div class="infra-chips">
-          <span class="chip">Private GPUs</span>
-          <span class="chip">Self-serve</span>
-          <span class="chip">Agent marketplace</span>
-          <span class="chip">RAG · Web · Office</span>
+          <span class="chip">AI Agents as a Service</span>
+          <span class="chip">Bring Your Own Agent</span>
+          <span class="chip">EU-hosted</span>
         </div>
       </div>
     </div>
-
-    <p class="next-note">Waitlist members get early access as each piece opens up.</p>
   </section>
 
   <!-- Final CTA -->
@@ -667,6 +680,7 @@
       />
       <button type="submit" class="waitlist-btn">Join the waitlist</button>
     </form>
+    <p class="form-consent">By clicking Join the waitlist, you agree to our <a href="#">Terms of Service</a>. I agree to gedor.ai storing and processing my information to manage my waitlist request. I can withdraw consent at any time by emailing <a href="mailto:privacy@gedor.ai">privacy@gedor.ai</a>. See our <a href="#">Privacy Policy</a>.</p>
   </section>
 
   <!-- Trust strip -->
