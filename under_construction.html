@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gedor.ai — Coming Soon</title>
+  <meta name="description" content="A single OpenAI-compatible endpoint for open source models — running on dedicated EU hardware." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-base:        #131313;
+      --bg-surface:     #1C1C1C;
+      --bg-elevated:    #242424;
+      --border-subtle:  rgba(255,255,255,0.07);
+      --border-default: rgba(255,255,255,0.12);
+      --border-strong:  rgba(255,255,255,0.22);
+      --text-primary:   #FFFFFF;
+      --text-secondary: rgba(255,255,255,0.60);
+      --text-tertiary:  rgba(255,255,255,0.35);
+      --accent:         #FFD100;
+      --accent-bg:      rgba(255,209,0,0.10);
+      --accent-border:  rgba(255,209,0,0.25);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── hex-grid background ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='69.28' viewBox='0 0 60 69.28'%3E%3Cpolygon points='30,1 59,17.64 59,51.64 30,68.28 1,51.64 1,17.64' fill='none' stroke='rgba(255,209,0,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+      background-size: 60px 69px;
+      pointer-events: none;
+    }
+
+    /* ── radial accent glow ── */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,209,0,0.07) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── layout ── */
+    .page {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 60px 24px;
+    }
+
+    /* ── logo ── */
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 64px;
+    }
+    .logo-mark {
+      animation: glow 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 8px rgba(255,209,0,0.2));
+    }
+    @keyframes glow {
+      0%, 100% { filter: drop-shadow(0 0 6px rgba(255,209,0,0.15)); }
+      50%       { filter: drop-shadow(0 0 16px rgba(255,209,0,0.35)); }
+    }
+    .logo-text {
+      font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .logo-dot { color: var(--accent); }
+
+    /* ── badge ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 16px; border-radius: 9999px;
+      background: var(--accent-bg); border: 1px solid var(--accent-border);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 32px;
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    /* ── headline ── */
+    .headline {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      text-align: center;
+      max-width: 1024px;
+      margin-bottom: 24px;
+    }
+    .headline em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    /* ── subline ── */
+    .subline {
+      font-size: clamp(15px, 2vw, 17px);
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 64px;
+    }
+
+    /* ── divider ── */
+    .rule {
+      width: 40px; height: 2px;
+      background: var(--accent-border);
+      border-radius: 1px;
+      margin: 0 auto 64px;
+    }
+
+    /* ── why cards ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 800px;
+      width: 100%;
+      margin-bottom: 72px;
+    }
+
+    @media (max-width: 640px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+
+    .why-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-top: 2px solid var(--accent-border);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+      transition: border-color 150ms ease, transform 150ms ease;
+    }
+    .why-card:hover {
+      border-color: var(--border-default);
+      border-top-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .why-icon {
+      font-size: 22px; margin-bottom: 12px;
+    }
+    .why-title {
+      font-size: 13px; font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+    .why-body {
+      font-size: 12px; color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── coming soon label ── */
+    .coming-soon {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      margin-bottom: 56px;
+    }
+    .coming-soon-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--text-tertiary);
+    }
+    .coming-soon-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700; letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    /* ── trust strip ── */
+    .trust {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; flex-wrap: wrap;
+      border: 1px solid var(--border-subtle);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 500;
+      color: var(--text-tertiary);
+      padding: 8px 20px;
+      border-right: 1px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-item strong { color: var(--text-secondary); }
+
+    @media (max-width: 640px) {
+      .trust { border-radius: 12px; }
+      .trust-item { width: 50%; border-bottom: 1px solid var(--border-subtle); }
+    }
+
+    /* ── footer ── */
+    .footer {
+      font-size: 12px; color: var(--text-tertiary);
+      text-align: center; line-height: 1.7;
+    }
+    .footer a { color: var(--text-tertiary); text-decoration: none; border-bottom: 1px solid var(--border-subtle); transition: color 150ms ease; }
+    .footer a:hover { color: var(--text-secondary); }
+
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Logo -->
+  <div class="logo">
+    <svg class="logo-mark" width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 0C37.255 0 48 10.745 48 24C48 37.255 37.255 48 24 48C10.745 48 0 37.255 0 24C0 10.745 10.745 0 24 0ZM16 11L8 24L16 37H32L40 24L32 11H16ZM24 20C26.209 20 28 21.791 28 24C28 26.209 26.209 28 24 28C21.791 28 20 26.209 20 24C20 21.791 21.791 20 24 20Z" fill="white"/>
+    </svg>
+    <span class="logo-text">GEDOR<span class="logo-dot">.</span>AI</span>
+  </div>
+
+  <!-- Badge -->
+  <div class="badge">
+    <span class="badge-dot"></span>
+    Early Access · EU
+  </div>
+
+  <!-- Headline -->
+  <h1 class="headline">
+    A single OpenAI-compatible endpoint for <em>open source models.</em><br/>
+    <br />
+    Running on dedicated EU hardware.
+  </h1>
+
+  <!-- Subline -->
+  <p class="subline">
+    Your prompts, your data, your models.
+  </p>
+
+  <div class="rule"></div>
+
+  <!-- Why Gedor cards -->
+  <!-- <div class="why-grid"> -->
+  <!--   <div class="why-card"> -->
+  <!--     <div class="why-icon">🇪🇺</div> -->
+  <!--     <div class="why-title">No hyperscaler.<br/>No US jurisdiction.</div> -->
+  <!--     <div class="why-body">All infrastructure owned and operated in Croatia. No CLOUD Act. No third-country data transfers.</div> -->
+  <!--   </div> -->
+  <!--   <div class="why-card"> -->
+  <!--     <div class="why-icon">⚙️</div> -->
+  <!--     <div class="why-title">Owned metal,<br/>full control.</div> -->
+  <!--     <div class="why-body">Every token processed on dedicated hardware. Not resold cloud, not shared infrastructure — owned metal, full control.</div> -->
+  <!--   </div> -->
+  <!--   <div class="why-card"> -->
+  <!--     <div class="why-icon">🔌</div> -->
+  <!--     <div class="why-title">No compromises.<br/>Drop in today.</div> -->
+  <!--     <div class="why-body">OpenAI-compatible API. Change one line of code. Full GDPR compliance. Zero refactoring required.</div> -->
+  <!--   </div> -->
+  <!-- </div> -->
+
+  <!-- Coming soon -->
+  <div class="coming-soon">
+    <div class="coming-soon-label">Status</div>
+    <div class="coming-soon-title">Coming Soon</div>
+  </div>
+
+  <!-- Trust strip -->
+  <div class="trust">
+    <div class="trust-item"><strong>🔒 ISO 27001</strong></div>
+    <div class="trust-item"><strong>🤖 ISO 42001</strong></div>
+    <div class="trust-item"><strong>🇭🇷 Zagreb, Croatia</strong></div>
+    <div class="trust-item"><strong>🇪🇺 GDPR Compliant</strong></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    © 2026 Gedor.ai d.o.o. · Zagreb, Croatia
+    &nbsp;·&nbsp; <a href="mailto:hello@gedor.ai">hello@gedor.ai</a>
+  </div>
+
+</div>
+</body>
+</html>

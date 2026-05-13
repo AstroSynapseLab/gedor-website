@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gedor.ai — Coming Soon</title>
-  <meta name="description" content="A single OpenAI-compatible endpoint for open source models — running on dedicated EU hardware." />
+  <title>Gedor.ai — LLMs as a Service. Hosted in the EU.</title>
+  <meta name="description" content="LLMs as a Service, hosted in the EU. On-demand or private provisioning, curated open-weight catalog, OpenAI-compatible API." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,15 +24,16 @@
       --accent:         #FFD100;
       --accent-bg:      rgba(255,209,0,0.10);
       --accent-border:  rgba(255,209,0,0.25);
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font:           'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono:      'JetBrains Mono', ui-monospace, monospace;
     }
 
     html, body {
-      height: 100%;
       background: var(--bg-base);
       color: var(--text-primary);
       font-family: var(--font);
       -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
     }
 
     /* ── hex-grid background ── */
@@ -55,19 +56,29 @@
       pointer-events: none; z-index: 0;
     }
 
-    /* ── layout ── */
+    /* ── layout shell ── */
     .page {
       position: relative; z-index: 1;
       min-height: 100vh;
       display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 60px 24px;
+      align-items: center;
+      padding: 40px 24px 0;
     }
 
-    /* ── logo ── */
+    .container {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    /* ── nav ── */
+    .nav {
+      width: 100%;
+      max-width: 900px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 80px;
+    }
     .logo {
       display: flex; align-items: center; gap: 12px;
-      margin-bottom: 64px;
     }
     .logo-mark {
       animation: glow 3s ease-in-out infinite;
@@ -75,14 +86,26 @@
     }
     @keyframes glow {
       0%, 100% { filter: drop-shadow(0 0 6px rgba(255,209,0,0.15)); }
-      50%       { filter: drop-shadow(0 0 16px rgba(255,209,0,0.35)); }
+      50%      { filter: drop-shadow(0 0 16px rgba(255,209,0,0.35)); }
     }
     .logo-text {
       font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
     }
     .logo-dot { color: var(--accent); }
+    .nav-cta {
+      font-size: 13px; font-weight: 500; color: var(--text-secondary);
+      text-decoration: none; padding: 8px 14px; border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      transition: border-color 150ms ease, color 150ms ease;
+    }
+    .nav-cta:hover { color: var(--text-primary); border-color: var(--border-default); }
 
-    /* ── badge ── */
+    /* ── hero ── */
+    .hero {
+      text-align: center;
+      padding: 20px 0 80px;
+    }
+
     .badge {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 5px 16px; border-radius: 9999px;
@@ -97,17 +120,14 @@
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; }
-      50%       { opacity: 0.4; }
+      50%      { opacity: 0.4; }
     }
 
-    /* ── headline ── */
     .headline {
-      font-size: clamp(32px, 5vw, 56px);
+      font-size: clamp(36px, 5.5vw, 60px);
       font-weight: 700;
       letter-spacing: -0.04em;
       line-height: 1.05;
-      text-align: center;
-      max-width: 1024px;
       margin-bottom: 24px;
     }
     .headline em {
@@ -115,79 +135,294 @@
       color: var(--accent);
     }
 
-    /* ── subline ── */
-    .subline {
-      font-size: clamp(15px, 2vw, 17px);
+    .subhead {
+      font-size: clamp(16px, 2vw, 18px);
       color: var(--text-secondary);
+      line-height: 1.65;
+      max-width: 600px;
+      margin: 0 auto 12px;
+    }
+    .subhead-secondary {
+      font-size: clamp(15px, 1.8vw, 16px);
+      color: var(--text-tertiary);
+      line-height: 1.65;
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── waitlist form ── */
+    .waitlist-form {
+      display: flex; gap: 8px;
+      max-width: 460px; margin: 0 auto 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: 12px;
+      padding: 6px;
+      transition: border-color 150ms ease, box-shadow 200ms ease;
+    }
+    .waitlist-form:focus-within {
+      border-color: var(--accent-border);
+      box-shadow: 0 0 0 4px rgba(255,209,0,0.08);
+    }
+    .waitlist-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 10px 14px;
+      color: var(--text-primary);
+      font-family: var(--font);
+      font-size: 14px;
+    }
+    .waitlist-input::placeholder { color: var(--text-tertiary); }
+    .waitlist-btn {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-family: var(--font);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: background 150ms ease, transform 100ms ease;
+      white-space: nowrap;
+    }
+    .waitlist-btn:hover { background: #FFE04D; }
+    .waitlist-btn:active { transform: translateY(1px); }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--text-tertiary);
       text-align: center;
-      line-height: 1.75;
-      max-width: 520px;
-      margin-bottom: 64px;
     }
 
-    /* ── divider ── */
-    .rule {
-      width: 40px; height: 2px;
-      background: var(--accent-border);
-      border-radius: 1px;
-      margin: 0 auto 64px;
+    /* ── section header ── */
+    .section {
+      padding: 64px 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before {
+      content: '';
+      width: 18px; height: 1px;
+      background: var(--accent);
+    }
+    .section-title {
+      font-size: clamp(24px, 3.2vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .section-subtitle {
+      font-size: 15px;
+      color: var(--text-tertiary);
+      margin-bottom: 40px;
     }
 
-    /* ── why cards ── */
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      max-width: 800px;
-      width: 100%;
-      margin-bottom: 72px;
-    }
-
-    @media (max-width: 640px) {
-      .why-grid { grid-template-columns: 1fr; }
-    }
-
-    .why-card {
+    /* ── models tabs ── */
+    .models-panel {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-top: 2px solid var(--accent-border);
-      border-radius: 12px;
-      padding: 24px 20px;
-      text-align: center;
-      transition: border-color 150ms ease, transform 150ms ease;
+      border-radius: 14px;
+      overflow: hidden;
     }
-    .why-card:hover {
-      border-color: var(--border-default);
-      border-top-color: var(--accent);
-      transform: translateY(-2px);
+    .tablist {
+      display: flex;
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(0,0,0,0.18);
     }
-    .why-icon {
-      font-size: 22px; margin-bottom: 12px;
+    .tab {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-tertiary);
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      padding: 16px 18px;
+      cursor: pointer;
+      position: relative;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: color 150ms ease, background 150ms ease;
     }
-    .why-title {
-      font-size: 13px; font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 8px;
+    .tab:hover { color: var(--text-secondary); background: rgba(255,255,255,0.02); }
+    .tab .tab-count {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text-tertiary);
+      transition: background 150ms ease, color 150ms ease;
+    }
+    .tab[aria-selected="true"] {
       color: var(--text-primary);
+      background: var(--bg-surface);
     }
-    .why-body {
-      font-size: 12px; color: var(--text-secondary);
-      line-height: 1.65;
+    .tab[aria-selected="true"] .tab-count {
+      background: var(--accent-bg);
+      color: var(--accent);
+    }
+    .tab[aria-selected="true"]::after {
+      content: '';
+      position: absolute;
+      left: 18px; right: 18px;
+      bottom: -1px; height: 2px;
+      background: var(--accent);
+      border-radius: 1px 1px 0 0;
     }
 
-    /* ── coming soon label ── */
-    .coming-soon {
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
-      margin-bottom: 56px;
+    .tabpanels {
+      padding: 28px 26px;
     }
-    .coming-soon-label {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--text-tertiary);
+    .tabpanel {
+      display: none;
+      animation: fadeInPanel 220ms ease both;
     }
-    .coming-soon-title {
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 700; letter-spacing: -0.03em;
-      color: var(--text-primary);
+    .tabpanel[aria-hidden="false"] { display: block; }
+    @keyframes fadeInPanel {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .model-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px 28px;
+    }
+    @media (max-width: 720px) {
+      .model-list { grid-template-columns: 1fr; }
+    }
+    .model-list li {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: flex; align-items: center;
+      gap: 12px;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--border-subtle);
+      transition: color 150ms ease, padding 150ms ease;
+    }
+    .model-list li:hover { color: var(--text-primary); padding-left: 12px; }
+    .model-list li .idx {
+      font-size: 10px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.06em;
+      min-width: 22px;
+    }
+    .model-list li .dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+    .model-list li:hover .dot { opacity: 1; }
+    .model-list li .name { flex: 1; }
+    .model-list li .tag {
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--text-tertiary);
+      padding: 2px 7px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+    }
+
+    /* ── infrastructure / next ── */
+    .infra-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 720px) {
+      .infra-block { grid-template-columns: 1fr; gap: 28px; }
+    }
+    .infra-pane {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 28px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .infra-pane::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
+    }
+    .infra-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 3px 10px;
+      border: 1px solid var(--accent-border);
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+    .infra-body {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .infra-body strong { color: var(--text-primary); font-weight: 600; }
+
+    .infra-chips {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 18px;
+    }
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .next-note {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--text-tertiary);
+    }
+
+    /* ── final CTA ── */
+    .final-cta {
+      text-align: center;
+      padding: 96px 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .final-cta-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .final-cta-perks {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.04em;
+      margin-bottom: 32px;
     }
 
     /* ── trust strip ── */
@@ -197,7 +432,8 @@
       border: 1px solid var(--border-subtle);
       border-radius: 9999px;
       overflow: hidden;
-      margin-bottom: 48px;
+      max-width: 720px;
+      margin: 0 auto 56px;
     }
     .trust-item {
       display: flex; align-items: center; gap: 6px;
@@ -208,93 +444,341 @@
       white-space: nowrap;
     }
     .trust-item:last-child { border-right: none; }
-    .trust-item strong { color: var(--text-secondary); }
+    .trust-item strong { color: var(--text-secondary); font-weight: 500; }
 
     @media (max-width: 640px) {
-      .trust { border-radius: 12px; }
-      .trust-item { width: 50%; border-bottom: 1px solid var(--border-subtle); }
+      .trust { border-radius: 12px; flex-direction: column; width: 100%; }
+      .trust-item { width: 100%; justify-content: center; border-right: none; border-bottom: 1px solid var(--border-subtle); }
+      .trust-item:last-child { border-bottom: none; }
     }
 
     /* ── footer ── */
     .footer {
-      font-size: 12px; color: var(--text-tertiary);
-      text-align: center; line-height: 1.7;
+      width: 100%;
+      max-width: 900px;
+      padding: 32px 0 40px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-tertiary);
     }
-    .footer a { color: var(--text-tertiary); text-decoration: none; border-bottom: 1px solid var(--border-subtle); transition: color 150ms ease; }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer a {
+      color: var(--text-tertiary);
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
     .footer a:hover { color: var(--text-secondary); }
+    .footer-meta { letter-spacing: 0.02em; }
 
+    @media (max-width: 640px) {
+      .footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; flex-wrap: wrap; gap: 16px; }
+    }
+
+    /* ── reveal on load ── */
+    .fade-in {
+      animation: fadeIn 600ms ease both;
+    }
+    .fade-in.delay-1 { animation-delay: 80ms; }
+    .fade-in.delay-2 { animation-delay: 160ms; }
+    .fade-in.delay-3 { animation-delay: 240ms; }
+    .fade-in.delay-4 { animation-delay: 320ms; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- Logo -->
-  <div class="logo">
-    <svg class="logo-mark" width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M24 0C37.255 0 48 10.745 48 24C48 37.255 37.255 48 24 48C10.745 48 0 37.255 0 24C0 10.745 10.745 0 24 0ZM16 11L8 24L16 37H32L40 24L32 11H16ZM24 20C26.209 20 28 21.791 28 24C28 26.209 26.209 28 24 28C21.791 28 20 26.209 20 24C20 21.791 21.791 20 24 20Z" fill="white"/>
-    </svg>
-    <span class="logo-text">GEDOR<span class="logo-dot">.</span>AI</span>
-  </div>
+  <!-- Nav -->
+  <nav class="nav fade-in">
+    <div class="logo">
+      <svg class="logo-mark" width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 0C37.255 0 48 10.745 48 24C48 37.255 37.255 48 24 48C10.745 48 0 37.255 0 24C0 10.745 10.745 0 24 0ZM16 11L8 24L16 37H32L40 24L32 11H16ZM24 20C26.209 20 28 21.791 28 24C28 26.209 26.209 28 24 28C21.791 28 20 26.209 20 24C20 21.791 21.791 20 24 20Z" fill="white"/>
+      </svg>
+      <span class="logo-text">GEDOR<span class="logo-dot">.</span>AI</span>
+    </div>
+    <a href="#waitlist" class="nav-cta">Join waitlist</a>
+  </nav>
 
-  <!-- Badge -->
-  <div class="badge">
-    <span class="badge-dot"></span>
-    Early Access · EU
-  </div>
+  <!-- Hero -->
+  <section class="container hero">
+    <div class="badge fade-in delay-1">
+      <span class="badge-dot"></span>
+      Early Access · Summer 2026
+    </div>
 
-  <!-- Headline -->
-  <h1 class="headline">
-    A single OpenAI-compatible endpoint for <em>open source models.</em><br/>
-    <br />
-    Running on dedicated EU hardware.
-  </h1>
+    <h1 class="headline fade-in delay-2">
+      LLMs as a Service.<br/>
+      Hosted in the <em>EU.</em>
+    </h1>
 
-  <!-- Subline -->
-  <p class="subline">
-    Your prompts, your data, your models.
-  </p>
+    <p class="subhead fade-in delay-3">
+      On-demand or private provisioning. Curated open-weight catalog. OpenAI-compatible API.
+    </p>
 
-  <div class="rule"></div>
+    <p class="subhead-secondary fade-in delay-3">
+      One key, one endpoint. Switch models without touching your code.
+    </p>
 
-  <!-- Why Gedor cards -->
-  <!-- <div class="why-grid"> -->
-  <!--   <div class="why-card"> -->
-  <!--     <div class="why-icon">🇪🇺</div> -->
-  <!--     <div class="why-title">No hyperscaler.<br/>No US jurisdiction.</div> -->
-  <!--     <div class="why-body">All infrastructure owned and operated in Croatia. No CLOUD Act. No third-country data transfers.</div> -->
-  <!--   </div> -->
-  <!--   <div class="why-card"> -->
-  <!--     <div class="why-icon">⚙️</div> -->
-  <!--     <div class="why-title">Owned metal,<br/>full control.</div> -->
-  <!--     <div class="why-body">Every token processed on dedicated hardware. Not resold cloud, not shared infrastructure — owned metal, full control.</div> -->
-  <!--   </div> -->
-  <!--   <div class="why-card"> -->
-  <!--     <div class="why-icon">🔌</div> -->
-  <!--     <div class="why-title">No compromises.<br/>Drop in today.</div> -->
-  <!--     <div class="why-body">OpenAI-compatible API. Change one line of code. Full GDPR compliance. Zero refactoring required.</div> -->
-  <!--   </div> -->
-  <!-- </div> -->
+    <form id="waitlist" class="waitlist-form fade-in delay-4" data-source="hero" onsubmit="handleSubmit(event)">
+      <input
+        type="email"
+        class="waitlist-input"
+        placeholder="you@company.eu"
+        required
+        aria-label="Email address"
+      />
+      <button type="submit" class="waitlist-btn">Join the waitlist</button>
+    </form>
+    <p class="form-note fade-in delay-4">Early access opens summer 2026.</p>
+  </section>
 
-  <!-- Coming soon -->
-  <div class="coming-soon">
-    <div class="coming-soon-label">Status</div>
-    <div class="coming-soon-title">Coming Soon</div>
-  </div>
+  <!-- Models -->
+  <section class="container section">
+    <div class="section-label">Models</div>
+    <h2 class="section-title">Coming soon at launch.</h2>
+    <p class="section-subtitle">The open-weight models teams are actually deploying — curated, hosted, ready to call.</p>
+
+    <div class="models-panel">
+      <div class="tablist" role="tablist" aria-label="Model categories">
+        <button class="tab" role="tab" id="tab-general" aria-controls="panel-general" aria-selected="true">
+          General-purpose <span class="tab-count">10</span>
+        </button>
+        <button class="tab" role="tab" id="tab-coding" aria-controls="panel-coding" aria-selected="false">
+          Coding <span class="tab-count">10</span>
+        </button>
+        <button class="tab" role="tab" id="tab-embedding" aria-controls="panel-embedding" aria-selected="false">
+          Embedding <span class="tab-count">10</span>
+        </button>
+      </div>
+
+      <div class="tabpanels">
+
+        <div class="tabpanel" role="tabpanel" id="panel-general" aria-labelledby="tab-general" aria-hidden="false">
+          <ul class="model-list">
+            <li><span class="idx">01</span><span class="dot"></span><span class="name">GLM 5.1</span><span class="tag">MIT</span></li>
+            <li><span class="idx">02</span><span class="dot"></span><span class="name">Llama 4 Maverick</span><span class="tag">Community</span></li>
+            <li><span class="idx">03</span><span class="dot"></span><span class="name">Llama 4 Scout</span><span class="tag">Community</span></li>
+            <li><span class="idx">04</span><span class="dot"></span><span class="name">Qwen 3.6 235B</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">05</span><span class="dot"></span><span class="name">Mistral Large 3</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">06</span><span class="dot"></span><span class="name">Mistral Small 4</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">07</span><span class="dot"></span><span class="name">Gemma 4 27B</span><span class="tag">Gemma</span></li>
+            <li><span class="idx">08</span><span class="dot"></span><span class="name">Gemma 4 12B</span><span class="tag">Gemma</span></li>
+            <li><span class="idx">09</span><span class="dot"></span><span class="name">gpt-oss 120B</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">10</span><span class="dot"></span><span class="name">Phi-4 14B</span><span class="tag">MIT</span></li>
+          </ul>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="panel-coding" aria-labelledby="tab-coding" aria-hidden="true">
+          <ul class="model-list">
+            <li><span class="idx">01</span><span class="dot"></span><span class="name">GLM 5.1 Coder</span><span class="tag">MIT</span></li>
+            <li><span class="idx">02</span><span class="dot"></span><span class="name">Kimi K2.6 Thinking</span><span class="tag">MIT-mod</span></li>
+            <li><span class="idx">03</span><span class="dot"></span><span class="name">Qwen 3 Coder</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">04</span><span class="dot"></span><span class="name">Qwen 3.6 Coder 27B</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">05</span><span class="dot"></span><span class="name">DeepSeek Coder V2</span><span class="tag">MIT</span></li>
+            <li><span class="idx">06</span><span class="dot"></span><span class="name">DeepSeek V4 Pro</span><span class="tag">MIT</span></li>
+            <li><span class="idx">07</span><span class="dot"></span><span class="name">Devstral Small 2</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">08</span><span class="dot"></span><span class="name">Codestral 25.05</span><span class="tag">MNPL</span></li>
+            <li><span class="idx">09</span><span class="dot"></span><span class="name">StarCoder 2 15B</span><span class="tag">BigCode</span></li>
+            <li><span class="idx">10</span><span class="dot"></span><span class="name">MiniMax M2.7</span><span class="tag">MIT</span></li>
+          </ul>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="panel-embedding" aria-labelledby="tab-embedding" aria-hidden="true">
+          <ul class="model-list">
+            <li><span class="idx">01</span><span class="dot"></span><span class="name">BGE-M3</span><span class="tag">MIT</span></li>
+            <li><span class="idx">02</span><span class="dot"></span><span class="name">BGE Large EN v1.5</span><span class="tag">MIT</span></li>
+            <li><span class="idx">03</span><span class="dot"></span><span class="name">Nomic Embed v1.5</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">04</span><span class="dot"></span><span class="name">Jina v5 Text Small</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">05</span><span class="dot"></span><span class="name">Jina CLIP v2</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">06</span><span class="dot"></span><span class="name">Qwen3 Embedding 8B</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">07</span><span class="dot"></span><span class="name">Qwen3 Embedding 0.6B</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">08</span><span class="dot"></span><span class="name">E5 Mistral 7B Instruct</span><span class="tag">MIT</span></li>
+            <li><span class="idx">09</span><span class="dot"></span><span class="name">GTE Large EN v1.5</span><span class="tag">Apache 2.0</span></li>
+            <li><span class="idx">10</span><span class="dot"></span><span class="name">MPNet Base v2</span><span class="tag">Apache 2.0</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Infrastructure + What's next -->
+  <section class="container section">
+    <div class="section-label">Under the hood</div>
+    <h2 class="section-title">Owned compute. Open roadmap.</h2>
+    <p class="section-subtitle">Dedicated infrastructure today. Self-provisioned endpoints and agents next.</p>
+
+    <div class="infra-block">
+      <div class="infra-pane">
+        <span class="infra-tag">Now</span>
+        <p class="infra-body">
+          We're building on dedicated GPUs in an EU data center, with a <strong>Bifrost</strong> gateway, <strong>vLLM</strong> inference, and <strong>scale-to-zero</strong> orchestration. Direct compute access, no reseller stack.
+        </p>
+        <div class="infra-chips">
+          <span class="chip">Bifrost</span>
+          <span class="chip">vLLM</span>
+          <span class="chip">Kubernetes</span>
+          <span class="chip">KServe</span>
+          <span class="chip">EU-resident</span>
+        </div>
+      </div>
+
+      <div class="infra-pane">
+        <span class="infra-tag">Next</span>
+        <p class="infra-body">
+          Dedicated GPU endpoints you provision yourself, and a marketplace of ready-to-deploy agents.
+        </p>
+        <div class="infra-chips">
+          <span class="chip">Private GPUs</span>
+          <span class="chip">Self-serve</span>
+          <span class="chip">Agent marketplace</span>
+          <span class="chip">RAG · Web · Office</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="next-note">Waitlist members get early access as each piece opens up.</p>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="container final-cta">
+    <h2 class="final-cta-title">Get in line.</h2>
+    <p class="final-cta-perks">Early access · founding-user pricing · direct input on the catalog</p>
+
+    <form class="waitlist-form" data-source="final-cta" onsubmit="handleSubmit(event)">
+      <input
+        type="email"
+        class="waitlist-input"
+        placeholder="you@company.eu"
+        required
+        aria-label="Email address"
+      />
+      <button type="submit" class="waitlist-btn">Join the waitlist</button>
+    </form>
+  </section>
 
   <!-- Trust strip -->
-  <div class="trust">
-    <div class="trust-item"><strong>🔒 ISO 27001</strong></div>
-    <div class="trust-item"><strong>🤖 ISO 42001</strong></div>
-    <div class="trust-item"><strong>🇭🇷 Zagreb, Croatia</strong></div>
-    <div class="trust-item"><strong>🇪🇺 GDPR Compliant</strong></div>
+  <div class="container">
+    <div class="trust">
+      <div class="trust-item"><strong>🇪🇺 EU-hosted</strong></div>
+      <div class="trust-item"><strong>GDPR</strong></div>
+      <div class="trust-item"><strong>EU AI Act</strong></div>
+      <div class="trust-item"><strong>ISO 42001</strong></div>
+    </div>
   </div>
 
   <!-- Footer -->
-  <div class="footer">
-    © 2026 Gedor.ai d.o.o. · Zagreb, Croatia
-    &nbsp;·&nbsp; <a href="mailto:hello@gedor.ai">hello@gedor.ai</a>
-  </div>
+  <footer class="footer">
+    <div class="footer-meta">
+      <a href="https://gedor.ai">Gedor.ai</a> — an Astro Synapse project
+    </div>
+    <div class="footer-links">
+      <a href="#">GDPR</a>
+      <a href="#">EU AI Act</a>
+      <a href="#">Privacy</a>
+      <a href="mailto:hello@gedor.ai">Contact</a>
+    </div>
+  </footer>
 
 </div>
+
+<script>
+  // ── waitlist form (Formspree) ──
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xwvyzwne';
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form  = e.target;
+    const input = form.querySelector('input[type="email"]');
+    const btn   = form.querySelector('button');
+    const email = input.value.trim();
+    if (!email) return;
+
+    const originalBtnText = btn.textContent;
+    const originalPlaceholder = input.placeholder;
+    btn.disabled = true;
+    btn.textContent = 'Sending\u2026';
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          source: form.dataset.source || 'unknown',
+          page: 'gedor.ai landing'
+        })
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        const msg = (data.errors && data.errors[0] && data.errors[0].message) || 'Submission failed. Try again?';
+        throw new Error(msg);
+      }
+
+      btn.textContent = 'You\u2019re in.';
+      btn.style.background = '#1C1C1C';
+      btn.style.color = '#FFD100';
+      btn.style.border = '1px solid rgba(255,209,0,0.4)';
+      input.value = '';
+      input.placeholder = 'Welcome aboard.';
+
+      setTimeout(() => {
+        btn.textContent = originalBtnText;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.border = '';
+        btn.disabled = false;
+        input.placeholder = originalPlaceholder;
+      }, 4000);
+
+    } catch (err) {
+      btn.textContent = err.message.length < 28 ? err.message : 'Try again';
+      btn.style.background = '#2a1a1a';
+      btn.style.color = '#ff8b8b';
+      btn.style.border = '1px solid rgba(255,139,139,0.3)';
+      setTimeout(() => {
+        btn.textContent = originalBtnText;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.border = '';
+        btn.disabled = false;
+      }, 3000);
+    }
+  }
+
+  // ── model tabs ──
+  (function initTabs() {
+    const tablist = document.querySelector('.tablist');
+    if (!tablist) return;
+    const tabs = Array.from(tablist.querySelectorAll('.tab'));
+    const panels = Array.from(document.querySelectorAll('.tabpanel'));
+
+    function select(idx) {
+      tabs.forEach((t, i) => t.setAttribute('aria-selected', i === idx ? 'true' : 'false'));
+      panels.forEach((p, i) => p.setAttribute('aria-hidden', i === idx ? 'false' : 'true'));
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(i));
+      tab.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); const n = (i + 1) % tabs.length; tabs[n].focus(); select(n); }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); const n = (i - 1 + tabs.length) % tabs.length; tabs[n].focus(); select(n); }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
