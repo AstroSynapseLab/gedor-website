@@ -43,6 +43,7 @@
 - New **Vector Databases** section added as a standalone panel (separate from the Models tabs): Qdrant, Milvus, Weaviate, Chroma, LanceDB, Vespa, OpenSearch, pgvector — all Apache 2.0 / BSD-3 / PostgreSQL licensed, all clear for commercial hosting.
 - Vector Databases section title updated to "Coming soon at launch." to match the Models section, making it clear both are part of the same launch.
 - ISO 27001 added to the trust strip.
+- Back to top button added (fixed, bottom-right), appears after 400px scroll, styled to match site design with yellow hover accent.
 
 ### Fixed
 - Mobile responsiveness: added `@media (max-width: 430px)` overrides for nav margin, hero padding, waitlist form (vertical stack, full-width button), section padding, tabs, model list gap, final CTA padding, and footer link spacing.
