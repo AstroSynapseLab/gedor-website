@@ -691,7 +691,7 @@ body::after {
 }
 
 .footer a:hover {
-  color: var(--color-text-secondary);
+  color: var(--color-accent-hover);
 }
 
 .footer__meta {
@@ -872,7 +872,7 @@ body::after {
   left: 50%;
   transform: translateX(-50%) translateY(calc(100% + var(--space-8)));
   z-index: 200;
-  width: min(560px, calc(100vw - var(--space-8)));
+  width: min(680px, calc(100vw - var(--space-8)));
   background: rgba(28, 28, 28, 0.72);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -1080,20 +1080,26 @@ body::after {
     right: var(--space-5);
   }
 
+}
+
+@media (max-width: 620px) {
   .cookie-banner {
     bottom: var(--space-4);
     width: calc(100vw - var(--space-8));
   }
 
   .cookie-banner__content {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: wrap;
     gap: var(--space-3);
     padding: var(--space-4);
   }
 
+  .cookie-banner__text {
+    flex: 1 1 100%;
+  }
+
   .cookie-banner__actions {
-    width: 100%;
+    flex: 1 1 100%;
   }
 
   .cookie-banner__btn {
