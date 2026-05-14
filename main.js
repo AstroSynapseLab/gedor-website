@@ -146,6 +146,7 @@ function initTabs() {
   });
 }
 
+
 function initNavCta() {
   const cta = document.querySelector('a[href="#waitlist"]');
   if (!cta) return;
