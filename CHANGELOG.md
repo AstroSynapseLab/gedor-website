@@ -30,7 +30,20 @@
 - Consent text consolidated into a single sentence for clarity.
 
 ### Added
-- "First in Croatia" callout added to hero badge, hero subtext, and trust strip.
+- "First in Croatia" callout added to hero badge, hero subtext, and trust strip (later removed).
+
+### Removed
+- All Croatia mentions removed from badge, hero subtext, and trust strip.
+- Codestral 25.05 removed from Coding models list (MNPL license prohibits commercial use).
+- Kimi K2.6 Thinking removed from Coding models list (ambiguous MIT-mod license).
+
+### Added (models)
+- Granite Code 20B (IBM, Apache 2.0) added to Coding models list.
+- Yi Coder 9B (Apache 2.0) added to Coding models list.
+- New **Vector Databases** section added as a standalone panel (separate from the Models tabs): Qdrant, Milvus, Weaviate, Chroma, LanceDB, Vespa, OpenSearch, pgvector — all Apache 2.0 / BSD-3 / PostgreSQL licensed, all clear for commercial hosting.
+- Vector Databases section title updated to "Coming soon at launch." to match the Models section, making it clear both are part of the same launch.
+- ISO 27001 added to the trust strip.
+- Back to top button added (fixed, bottom-right), appears after 400px scroll, styled to match site design with yellow hover accent.
 
 ### Fixed
 - Mobile responsiveness: added `@media (max-width: 430px)` overrides for nav margin, hero padding, waitlist form (vertical stack, full-width button), section padding, tabs, model list gap, final CTA padding, and footer link spacing.
