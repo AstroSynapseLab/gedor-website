@@ -41,6 +41,7 @@
 - Granite Code 20B (IBM, Apache 2.0) added to Coding models list.
 - Yi Coder 9B (Apache 2.0) added to Coding models list.
 - New **Vector Databases** section added as a standalone panel (separate from the Models tabs): Qdrant, Milvus, Weaviate, Chroma, LanceDB, Vespa, OpenSearch, pgvector — all Apache 2.0 / BSD-3 / PostgreSQL licensed, all clear for commercial hosting.
+- Vector Databases section title updated to "Coming soon at launch." to match the Models section, making it clear both are part of the same launch.
 
 ### Fixed
 - Mobile responsiveness: added `@media (max-width: 430px)` overrides for nav margin, hero padding, waitlist form (vertical stack, full-width button), section padding, tabs, model list gap, final CTA padding, and footer link spacing.
